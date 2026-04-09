@@ -2,86 +2,238 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Utkarsh Patil | Frontend Developer</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- GSAP for smooth, Framer-style animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <meta name="description" content="Utkarsh Patil — Frontend developer (Angular, React, TypeScript). Portfolio with projects, GitHub feed, and AI chat." />
 </head>
 
-<body class="bg-gray-900 text-white font-sans">
+<body class="bg-gray-900 text-white font-sans antialiased">
 
-  <!-- Hero -->
-  <section class="text-center py-20">
-    <h1 class="text-4xl md:text-6xl font-bold">Hi, I'm Utkarsh 👋</h1>
-    <p class="mt-4 text-xl text-gray-400">
-      Frontend Developer | 12+ Years Experience
-    </p>
-    <a href="#contact" class="mt-6 inline-block bg-blue-500 px-6 py-3 rounded-lg">
-      Contact Me
-    </a>
-  </section>
-
-  <!-- About -->
-  <section class="max-w-4xl mx-auto py-16 px-4">
-    <h2 class="text-3xl font-bold mb-4">About Me</h2>
-    <p class="text-gray-400">
-      Passionate frontend developer specializing in Angular, React, and modern web technologies.
-      Building scalable applications and now exploring AI-powered solutions.
-    </p>
-  </section>
-
-  <!-- Skills -->
-  <section class="bg-gray-800 py-16">
-    <div class="max-w-4xl mx-auto px-4">
-      <h2 class="text-3xl font-bold mb-6">Skills</h2>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div>Angular</div>
-        <div>React</div>
-        <div>RxJS</div>
-        <div>JavaScript</div>
-        <div>TypeScript</div>
-        <div>Tailwind CSS</div>
-        <div>AI Integration</div>
-        <div>Azure</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects -->
-  <section class="max-w-4xl mx-auto py-16 px-4">
-    <h2 class="text-3xl font-bold mb-6">Projects</h2>
-
-    <div class="space-y-6">
-      <div>
-        <h3 class="text-xl font-semibold">AI Resume Builder</h3>
-        <p class="text-gray-400">Generate resumes using AI</p>
-      </div>
-
-      <div>
-        <h3 class="text-xl font-semibold">Portfolio Website</h3>
-        <p class="text-gray-400">Personal branding website</p>
-      </div>
-
-      <div>
-        <h3 class="text-xl font-semibold">Enterprise Dashboard</h3>
-        <p class="text-gray-400">Angular-based analytics dashboard</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="bg-gray-800 py-16 text-center">
-    <h2 class="text-3xl font-bold mb-4">Contact</h2>
-    <p>Email: your@email.com</p>
-    <p>
-      <a href="https://www.linkedin.com/in/utkarsh-patil-3a552888" class="text-blue-400">
-        LinkedIn Profile
+  <!-- Navbar -->
+  <header class="fixed inset-x-0 top-0 z-40 bg-gradient-to-b from-black/60 to-transparent backdrop-blur-md">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="#" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-600 flex items-center justify-center font-bold">UP</div>
+        <span class="font-semibold">Utkarsh Patil</span>
       </a>
-    </p>
-  </section>
+      <nav class="hidden md:flex gap-6 text-gray-300">
+        <a href="#about" class="hover:text-white">About</a>
+        <a href="#skills" class="hover:text-white">Skills</a>
+        <a href="#projects" class="hover:text-white">Projects</a>
+        <a href="#contact" class="hover:text-white">Contact</a>
+      </nav>
+      <div class="md:hidden text-gray-300">Menu</div>
+    </div>
+  </header>
+
+  <main class="pt-24">
+    <!-- Hero -->
+    <section class="text-center py-28" id="hero">
+      <div class="max-w-4xl mx-auto px-6">
+        <h1 class="text-4xl md:text-6xl font-bold leading-tight" id="hero-title">Hi, I'm Utkarsh <span class="inline-block">👋</span></h1>
+        <p class="mt-6 text-xl text-gray-300" id="hero-sub">
+          Frontend Developer · 12+ years building delightful web apps with Angular & React.
+        </p>
+        <div class="mt-8 flex justify-center gap-4">
+          <a href="#projects" class="bg-gradient-to-r from-blue-500 to-indigo-600 px-6 py-3 rounded-lg shadow-lg">See Projects</a>
+          <a href="#contact" class="border border-gray-700 px-6 py-3 rounded-lg">Contact</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="max-w-5xl mx-auto py-16 px-6" data-section>
+      <h2 class="text-3xl font-bold mb-4">About Me</h2>
+      <p class="text-gray-300">
+        Passionate frontend developer specializing in Angular, React, TypeScript and modern tooling.
+        I build scalable, accessible interfaces and explore AI integrations to speed product development.
+      </p>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="bg-gray-800 py-16">
+      <div class="max-w-5xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-6">Skills</h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div class="p-4 bg-gray-900/40 rounded-lg">
+            <div class="font-semibold">Angular</div>
+            <div class="mt-2 h-2 bg-gray-700 rounded overflow-hidden"><div class="h-full bg-gradient-to-r from-green-400 to-green-600" style="width:85%"></div></div>
+          </div>
+          <div class="p-4 bg-gray-900/40 rounded-lg">
+            <div class="font-semibold">React</div>
+            <div class="mt-2 h-2 bg-gray-700 rounded overflow-hidden"><div class="h-full bg-gradient-to-r from-cyan-400 to-blue-600" style="width:90%"></div></div>
+          </div>
+          <div class="p-4 bg-gray-900/40 rounded-lg">
+            <div class="font-semibold">TypeScript</div>
+            <div class="mt-2 h-2 bg-gray-700 rounded overflow-hidden"><div class="h-full bg-gradient-to-r from-indigo-400 to-purple-600" style="width:88%"></div></div>
+          </div>
+          <div class="p-4 bg-gray-900/40 rounded-lg">
+            <div class="font-semibold">AI Integration</div>
+            <div class="mt-2 h-2 bg-gray-700 rounded overflow-hidden"><div class="h-full bg-gradient-to-r from-yellow-400 to-red-500" style="width:70%"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects + GitHub integration -->
+    <section id="projects" class="max-w-5xl mx-auto py-16 px-6" data-section>
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-3xl font-bold">Projects</h2>
+        <a id="github-profile" href="#" target="_blank" class="text-blue-400">View GitHub</a>
+      </div>
+
+      <div id="projects-list" class="grid md:grid-cols-3 gap-6">
+        <!-- fallback static projects -->
+        <article class="p-6 bg-gray-800/50 rounded-lg">
+          <h3 class="text-xl font-semibold">AI Resume Builder</h3>
+          <p class="mt-2 text-gray-400">Generate professional resumes using AI templates and prompts.</p>
+        </article>
+        <article class="p-6 bg-gray-800/50 rounded-lg">
+          <h3 class="text-xl font-semibold">Portfolio Website</h3>
+          <p class="mt-2 text-gray-400">Personal branding website (this one).</p>
+        </article>
+        <article class="p-6 bg-gray-800/50 rounded-lg">
+          <h3 class="text-xl font-semibold">Enterprise Dashboard</h3>
+          <p class="mt-2 text-gray-400">Angular-based analytics and reporting dashboard.</p>
+        </article>
+      </div>
+
+      <div class="mt-8 text-sm text-gray-400">Latest public repos from GitHub (auto-loaded below):</div>
+      <div id="github-repos" class="mt-4 grid md:grid-cols-3 gap-4"></div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="bg-gray-800 py-16 text-center">
+      <h2 class="text-3xl font-bold mb-4">Contact</h2>
+      <p>Email: your@email.com</p>
+      <p class="mt-2">
+        <a href="https://www.linkedin.com/in/utkarsh-patil-3a552888" id="linkedin-profile" class="text-blue-400">LinkedIn Profile</a>
+      </p>
+    </section>
+  </main>
 
   <footer class="text-center py-6 text-gray-500">
     © 2026 Utkarsh Patil
   </footer>
+
+  <!-- Floating AI Chat widget (client-side stub). To enable real AI, set CHAT_API_URL or implement a serverless OpenAI proxy. -->
+  <div id="chat-widget" class="fixed right-6 bottom-6 w-80 bg-gray-900/95 border border-gray-700 rounded-xl shadow-xl overflow-hidden" style="display:none">
+    <div class="px-4 py-3 flex items-center justify-between bg-gradient-to-r from-black/60 to-transparent">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center">AI</div>
+        <div class="text-sm font-semibold">Assistant</div>
+      </div>
+      <button id="chat-close" class="text-gray-300">✕</button>
+    </div>
+    <div id="chat-body" class="p-4 h-64 overflow-auto text-sm space-y-3"></div>
+    <form id="chat-form" class="p-3 border-t border-gray-800 flex gap-2">
+      <input id="chat-input" type="text" placeholder="Ask me about my projects, stack, or resume" class="flex-1 bg-gray-900/80 rounded px-3 py-2 text-sm outline-none" />
+      <button class="bg-blue-500 px-3 py-2 rounded">Send</button>
+    </form>
+  </div>
+
+  <button id="chat-toggle" aria-label="Open chat" class="fixed right-6 bottom-6 bg-gradient-to-br from-indigo-500 to-purple-600 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-lg">💬</button>
+
+  <script>
+    // === Configuration ===
+    const GITHUB_USERNAME = 'ui-techzone'; // change to your GitHub username
+    const LINKEDIN_URL = 'https://www.linkedin.com/in/utkarsh-patil-3a552888';
+    const CHAT_API_URL = ''; // Optional: set to your serverless chat endpoint that proxies OpenAI
+
+    // Update profile links
+    document.getElementById('github-profile').href = `https://github.com/${GITHUB_USERNAME}`;
+    document.getElementById('linkedin-profile').href = LINKEDIN_URL;
+
+    // === GSAP animations ===
+    gsap.from('#hero-title', { y: 30, opacity: 0, duration: 0.9, ease: 'power3.out' });
+    gsap.from('#hero-sub', { y: 20, opacity: 0, delay: 0.12, duration: 0.9, ease: 'power3.out' });
+    gsap.utils.toArray('[data-section]').forEach((section, i) => {
+      gsap.from(section, { y: 30, opacity: 0, duration: 0.8, delay: 0.12 * i, scrollTrigger: { trigger: section, start: 'top 85%' } });
+    });
+
+    // === GitHub repos fetch ===
+    async function loadGitHubRepos() {
+      try {
+        const res = await fetch(`https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=6`);
+        if (!res.ok) throw new Error('GitHub fetch failed');
+        const repos = await res.json();
+        const container = document.getElementById('github-repos');
+        container.innerHTML = '';
+        repos.forEach(r => {
+          const el = document.createElement('article');
+          el.className = 'p-4 bg-gray-800/50 rounded-lg';
+          el.innerHTML = `
+            <a href="${r.html_url}" target="_blank" class="font-semibold text-white">${r.name}</a>
+            <p class="text-gray-400 mt-2">${r.description || ''}</p>
+            <div class="mt-3 text-xs text-gray-400">⭐ ${r.stargazers_count} • ${r.language || '—'}</div>
+          `;
+          container.appendChild(el);
+        });
+      } catch (e) {
+        console.warn('Could not load GitHub repos', e);
+      }
+    }
+    loadGitHubRepos();
+
+    // === Chat widget behavior ===
+    const chatToggle = document.getElementById('chat-toggle');
+    const chatWidget = document.getElementById('chat-widget');
+    const chatClose = document.getElementById('chat-close');
+    const chatForm = document.getElementById('chat-form');
+    const chatInput = document.getElementById('chat-input');
+    const chatBody = document.getElementById('chat-body');
+
+    chatToggle.addEventListener('click', () => { chatWidget.style.display = 'block'; chatToggle.style.display = 'none'; });
+    chatClose.addEventListener('click', () => { chatWidget.style.display = 'none'; chatToggle.style.display = 'flex'; });
+
+    function appendMessage(from, text) {
+      const msg = document.createElement('div');
+      msg.className = from === 'user' ? 'text-right' : 'text-left';
+      msg.innerHTML = `<div class="inline-block p-2 rounded ${from==='user' ? 'bg-blue-600 text-white' : 'bg-gray-800 text-gray-200'}">${escapeHtml(text)}</div>`;
+      chatBody.appendChild(msg);
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function escapeHtml(text) {
+      return text.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":"&#39;"})[c]);
+    }
+
+    chatForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const q = chatInput.value.trim();
+      if (!q) return;
+      appendMessage('user', q);
+      chatInput.value = '';
+
+      // If user provided CHAT_API_URL, call it. Otherwise fallback to canned responses.
+      if (CHAT_API_URL) {
+        appendMessage('bot', 'Thinking...');
+        try {
+          const res = await fetch(CHAT_API_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ question: q }) });
+          const data = await res.json();
+          chatBody.lastChild.remove(); // remove 'Thinking...'
+          appendMessage('bot', data.answer || JSON.stringify(data));
+        } catch (err) {
+          chatBody.lastChild.remove();
+          appendMessage('bot', 'Sorry, chat service failed. See console for details.');
+          console.error(err);
+        }
+      } else {
+        // local canned assistant
+        const lower = q.toLowerCase();
+        if (lower.includes('resume')) appendMessage('bot', 'I can generate a resume. Try the AI Resume Builder project or ask for formatting tips.');
+        else if (lower.includes('stack') || lower.includes('tech')) appendMessage('bot', 'Primary stack: Angular, React, TypeScript, Tailwind CSS, Azure. I also use Node for backend APIs.');
+        else appendMessage('bot', "I'm a local assistant demo — to enable a full AI chat, deploy a serverless endpoint using OpenAI and set CHAT_API_URL in this file.");
+      }
+    });
+
+    // Small accessibility: close chat with Escape
+    window.addEventListener('keydown', (e) => { if (e.key === 'Escape') { chatWidget.style.display = 'none'; chatToggle.style.display = 'flex'; } });
+  </script>
 
 </body>
 </html>
