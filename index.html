@@ -142,7 +142,8 @@
     // === Configuration ===
     const GITHUB_USERNAME = 'ui-techzone'; // change to your GitHub username
     const LINKEDIN_URL = 'https://www.linkedin.com/in/utkarsh-patil-3a552888';
-    const CHAT_API_URL = ''; // Optional: set to your serverless chat endpoint that proxies OpenAI
+    // If you deploy the Netlify function included in this repo, use the local relative path:
+    const CHAT_API_URL = '/.netlify/functions/chat'; // set to your deployed function URL
 
     // Update profile links
     document.getElementById('github-profile').href = `https://github.com/${GITHUB_USERNAME}`;
@@ -180,15 +181,35 @@
     loadGitHubRepos();
 
     // === Chat widget behavior ===
-    const chatToggle = document.getElementById('chat-toggle');
+  const chatToggle = document.getElementById('chat-toggle');
     const chatWidget = document.getElementById('chat-widget');
     const chatClose = document.getElementById('chat-close');
     const chatForm = document.getElementById('chat-form');
     const chatInput = document.getElementById('chat-input');
     const chatBody = document.getElementById('chat-body');
+  const mobileBtn = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
 
-    chatToggle.addEventListener('click', () => { chatWidget.style.display = 'block'; chatToggle.style.display = 'none'; });
-    chatClose.addEventListener('click', () => { chatWidget.style.display = 'none'; chatToggle.style.display = 'flex'; });
+    // Chat toggle: open/close
+    chatToggle.addEventListener('click', () => { chatWidget.style.display = 'block'; chatToggle.style.display = 'none'; chatToggle.setAttribute('aria-expanded', 'true'); });
+    chatClose.addEventListener('click', () => { chatWidget.style.display = 'none'; chatToggle.style.display = 'flex'; chatToggle.setAttribute('aria-expanded', 'false'); chatToggle.focus(); });
+
+    // Mobile menu toggle
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', () => {
+        const open = mobileBtn.getAttribute('aria-expanded') === 'true';
+        mobileBtn.setAttribute('aria-expanded', String(!open));
+        mobileMenu.classList.toggle('hidden');
+        mobileMenu.classList.toggle('block');
+        if (!open) {
+          // focus first link for keyboard users
+          const first = mobileMenu.querySelector('a');
+          if (first) first.focus();
+        } else {
+          mobileBtn.focus();
+        }
+      });
+    }
 
     function appendMessage(from, text) {
       const msg = document.createElement('div');
@@ -231,8 +252,13 @@
       }
     });
 
-    // Small accessibility: close chat with Escape
-    window.addEventListener('keydown', (e) => { if (e.key === 'Escape') { chatWidget.style.display = 'none'; chatToggle.style.display = 'flex'; } });
+    // Small accessibility: close chat and mobile menu with Escape
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (chatWidget.style.display === 'block') { chatWidget.style.display = 'none'; chatToggle.style.display = 'flex'; chatToggle.setAttribute('aria-expanded','false'); chatToggle.focus(); }
+        if (mobileMenu && !mobileMenu.classList.contains('hidden')) { mobileMenu.classList.add('hidden'); mobileMenu.classList.remove('block'); mobileBtn.setAttribute('aria-expanded','false'); mobileBtn.focus(); }
+      }
+    });
   </script>
 
 </body>
